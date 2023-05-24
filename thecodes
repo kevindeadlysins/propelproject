@@ -1,0 +1,36 @@
+View(report_2018_2019)
+dataset = report_2018_2019
+
+#Split the years into two datasets
+year1 = subset(dataset, Year == 2018)
+year2 = subset(dataset, Year == 2019)
+
+
+#Want to compare the avg Happiness Score and Health
+mean(year1$Score)
+mean(year1$`Healthy life expectancy`)
+mean(year2$Score)
+mean(year2$`Healthy life expectancy`)
+
+#2018 Observing the relationship between Healthy Life Expectancy and Happiness Score
+year1reg = lm(year1$Score ~ year1$`Healthy life expectancy`)
+summary(year1reg)
+
+"2018 Score" = year1$Score
+"2018 Health" = year1$`Healthy life expectancy`
+
+#Plotting the Graph
+plot(`2018 Health`, `2018 Score`)
+abline(lm(`2018 Score` ~ `2018 Health`))
+title("2018 Health vs. Happiness Score")
+
+year2reg = lm(year2$Score ~ year2$`Healthy life expectancy`)
+summary(year2reg)
+
+"2019 Score" = year2$Score
+"2019 Health" = year2$`Healthy life expectancy`
+
+plot(`2019 Health`, `2019 Score`)
+abline(lm(`2019 Score` ~ `2019 Health`))
+title("2019 Health vs. Happiness Score")
+
